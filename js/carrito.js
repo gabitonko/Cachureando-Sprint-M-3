@@ -24,7 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const miNodoTitle = document.createElement('h5');
         miNodoTitle.classList.add('card-title');
         miNodoTitle.textContent = info.nombre;
-                      // Imagen
+                    //Descripcion
+        const miNodoDescripcion = document.createElement('p');
+        miNodoDescripcion.classList.add('card-text');
+        miNodoDescripcion.textContent= info.descripcion;
+                     // Imagen
         const miNodoImagen = document.createElement('img');
         miNodoImagen.classList.add('img-fluid');
         miNodoImagen.setAttribute('src', info.imagen);
@@ -41,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
                       // Insertamos
         miNodoCardBody.appendChild(miNodoImagen);
         miNodoCardBody.appendChild(miNodoTitle);
+        miNodoCardBody.appendChild(miNodoDescripcion);
         miNodoCardBody.appendChild(miNodoPrecio);
         miNodoCardBody.appendChild(miNodoBoton);
         miNodo.appendChild(miNodoCardBody);
