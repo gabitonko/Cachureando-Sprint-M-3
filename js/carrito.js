@@ -122,6 +122,7 @@ if (totalconiva < 100000) {
     DOMenvio.textContent = `¡Tienes envío gratuito!`
 };
     }
+
               /**
               * Evento para borrar un elemento del carrito */
 function borrarItemCarrito(evento) {
@@ -149,7 +150,6 @@ function calcularTotal() {
                       return total + miItem[0].precio;
                   }, 0).toFixed(0);
               }
-    
               /**
               * Varia el carrito y vuelve a dibujarlo
               */
