@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const DOMitems = document.querySelector('#items');
     const DOMcarrito = document.querySelector('#carrito');
     const DOMtotal = document.querySelector('#total');
+    const DOMiva = document.querySelector('#iva');
+    const DOMbruto = document.querySelector('#tbruto');
+    const DOMenvio = document.querySelector ('#envio');
     const DOMbotonVaciar = document.querySelector('#boton-vaciar');
     
               // Funciones
@@ -12,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
               /**
               * Dibuja todos los productos a partir de la base de datos. No confundir con el carrito
               */
-    function renderizarProductos() {
+function renderizarProductos() {
         baseDeDatos.forEach((info) => {
                       // Estructura
         const miNodo = document.createElement('div');
@@ -24,6 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const miNodoTitle = document.createElement('h5');
         miNodoTitle.classList.add('card-title');
         miNodoTitle.textContent = info.nombre;
+                    //código
+        const miNodoCod = document.createElement('p');
+        miNodoCod.classList.add('card-text');
+        miNodoCod.textContent = `Código ${info.id} `;
                     //Descripcion
         const miNodoDescripcion = document.createElement('p');
         miNodoDescripcion.classList.add('card-text');
@@ -45,29 +52,30 @@ document.addEventListener('DOMContentLoaded', () => {
                       // Insertamos
         miNodoCardBody.appendChild(miNodoImagen);
         miNodoCardBody.appendChild(miNodoTitle);
+        miNodoCardBody.appendChild(miNodoCod);
         miNodoCardBody.appendChild(miNodoDescripcion);
         miNodoCardBody.appendChild(miNodoPrecio);
         miNodoCardBody.appendChild(miNodoBoton);
         miNodo.appendChild(miNodoCardBody);
         DOMitems.appendChild(miNodo);
                   });
-              }
+}
     
               /**
               * Evento para añadir un producto al carrito de la compra
               */
-    function anyadirProductoAlCarrito(evento) {
+function anyadirProductoAlCarrito(evento) {
                   // Anyadimos el Nodo a nuestro carrito
                   carrito.push(evento.target.getAttribute('marcador'))
                   // Actualizamos el carrito 
                   renderizarCarrito();
-    
-              }
+                }
     
               /**
               * Dibuja todos los productos guardados en el carrito
               */
-    function renderizarCarrito() {
+function renderizarCarrito()
+    {
                   // Vaciamos todo el html
                   DOMcarrito.textContent = '';
                   // Quitamos los duplicados
@@ -101,12 +109,22 @@ document.addEventListener('DOMContentLoaded', () => {
                   });
                  // Renderizamos el precio total en el HTML
                  DOMtotal.textContent = calcularTotal();
-              }
+
+                 DOMiva.textContent = calcularTotal()*0.19;
+                 DOMbruto.textContent = calcularTotal()*1.19;
+
+                 const totalconiva = calcularTotal()*1.19;
     
+
+if (totalconiva < 100000) {
+    DOMenvio.textContent = '$' + parseInt(totalconiva * 0.05);
+}else{
+    DOMenvio.textContent = `¡Tienes envío gratuito!`
+};
+    }
               /**
-              * Evento para borrar un elemento del carrito
-              */
-    function borrarItemCarrito(evento) {
+              * Evento para borrar un elemento del carrito */
+function borrarItemCarrito(evento) {
                   // Obtenemos el producto ID que hay en el boton pulsado
         const id = evento.target.dataset.item;
                   // Borramos todos los productos
@@ -120,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
               /**
                * Calcula el precio total teniendo en cuenta los productos repetidos
                */
-    function calcularTotal() {
+function calcularTotal() {
                   // Recorremos el array del carrito 
                   return carrito.reduce((total, item) => {
                       // De cada elemento obtenemos su precio

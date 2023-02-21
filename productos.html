@@ -26,7 +26,7 @@
             </div>
             </div>
         </header>
-        <h2>Productos Disponibles</h2>>
+        <h2>Productos Disponibles</h2>
         <div class="container">
           <div class="row">
               <!-- Elementos generados a partir del JSON -->
@@ -38,7 +38,10 @@
                   <ul id="carrito" class="list-group"></ul>
                   <hr>
                   <!-- Precio total -->
-                  <p class="text-right">Total: <span id="total"></span>CLP;</p>
+                  <p class="text-right">Total neto: <span id="total"></span>CLP</p>
+                  <p class="text-right">IVA: $<span id="iva"></span> </p>
+                  <p class="text-right">Envío: <span id="envio"></span></p>
+                  <p class="text-right">Total a pagar $<span id="tbruto"></span></p> 
                   <button href=pagar.html id="boton-vaciar" class="btn btn-danger">Vaciar</button>
                   <button href=pagar.html id="boton-pagar" class="btn btn-danger"><a href="pagar.html">pagar</a></button>
                   <button href=calcular.html id="boton-carcular" class="btn btn-danger"><a href="calcular.html">calcular</a></button>
